@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Instruktur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Auth\Events\Validated;
+use App\Http\Requests\StoreInstrukturRequest;
+use Illuminate\Validation\ValidationException;
 
 class InstrukturController extends Controller
 {
@@ -12,7 +17,11 @@ class InstrukturController extends Controller
      */
     public function index()
     {
-        //
+        $instrukturs = Instruktur::orderByDesc('id', 'desc')->get();
+        
+        return view('admin.instrukturs.index', [
+            'instrukturs' => $instrukturs
+        ]);
     }
 
     /**
@@ -20,15 +29,44 @@ class InstrukturController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.instrukturs.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreInstrukturRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $user = User::where('email', $validated ['email'])->first();
+
+        if(!$user){
+            return back()->withErrors([
+                'email' => 'Data tidak ditemukan'
+            ]);
+        }
+        if($user->hasRole('instruktur')){
+            return back()->withErrors([
+                'email' => 'Email tersebut telah menjadi instruktur'
+            ]);
+        }
+
+        DB::transaction(function () use ($user, $validated){
+
+            $validated['user_id'] = $user->id;
+            $validated['is_active'] = true;
+
+            Instruktur::create($validated);
+
+            if ($user->hasRole('peserta')) {
+                $user->removeRole('peserta');
+            }
+            $user->assignRole('instruktur');
+
+        });
+
+        return redirect()->route('admin.instrukturs.index');
     }
 
     /**
@@ -60,6 +98,21 @@ class InstrukturController extends Controller
      */
     public function destroy(Instruktur $instruktur)
     {
-        //
+        try {
+            $instruktur->delete();
+
+            $user = \App\Models\User::find($instruktur->user_id);
+            $user->removeRole('instruktur');
+            $user->assignRole('peserta');
+
+            return redirect()->back();
+        } 
+        catch(\Exception $e){
+            DB::rollBack();
+            $error = ValidationException::withMessages([
+                'system_error' => ['System error!' . $e->getMessage()],
+            ]);
+            throw $error;
+        }
     }
 }
