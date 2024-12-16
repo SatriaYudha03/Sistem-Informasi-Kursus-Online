@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreKategoriRequest;
+use App\Http\Requests\UpdateKategoriRequest;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -67,15 +68,30 @@ class KategoriController extends Controller
      */
     public function edit(Kategori $kategori)
     {
-        //
+        return view('admin.kategoris.edit', compact('kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategori $kategori)
+    public function update(UpdateKategoriRequest $request, Kategori $kategori)
     {
-        //
+        DB::transaction(function () use ($request, $kategori) {
+
+            $validated = $request->validated();
+
+            if($request->hasFile('icon')){
+                $iconPath = $request->file('icon')->store('icons', 'public');
+                $validated['icon'] = $iconPath;
+            }
+
+        $validated['slug'] = Str::slug($validated['name']);
+        //web design -> web-design
+        
+        $kategori->update($validated);
+        });
+
+        return redirect()->route('admin.kategoris.index');
     }
 
     /**
@@ -83,6 +99,16 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        //
+        DB::beginTransaction();
+
+        try{
+            $kategori->delete();
+            DB::commit();   
+
+            return redirect()->route('admin.kategoris.index'); 
+        }   catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('admin.kategoris.index')->with('error', 'terjadi sebuah error'); 
+        }
     }
 }
