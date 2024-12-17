@@ -40,7 +40,7 @@ class VideoKursusController extends Controller
         $videoKursus = VideoKursus::create($validated);
 
         });
-        
+
         return redirect()->route('admin.kursuses.show', $kursus->id);
     }
 
@@ -57,15 +57,22 @@ class VideoKursusController extends Controller
      */
     public function edit(VideoKursus $videoKursus)
     {
-        //
+        return view ('admin.video_kursuses.edit', compact('videoKursus'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, VideoKursus $videoKursus)
+    public function update(StoreVideoKursusRequest $request, VideoKursus $videoKursus)
     {
-        //
+        DB::transaction(function () use ($request, $videoKursus) {
+
+        $validated = $request->validated(); 
+        
+        $videoKursus->update($validated);
+        });
+
+        return redirect()->route('admin.kursuses.show', $videoKursus->kursus_id);
     }
 
     /**
@@ -73,6 +80,16 @@ class VideoKursusController extends Controller
      */
     public function destroy(VideoKursus $videoKursus)
     {
-        //
+        DB::beginTransaction();
+
+        try{
+            $videoKursus->delete();
+            DB::commit();   
+
+            return redirect()->route('admin.kursuses.show', $videoKursus->kursus_id); 
+        }   catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('admin.kursuses.show', $videoKursus->kursus_id)->with('error', 'terjadi sebuah error'); 
+        }
     }
 }

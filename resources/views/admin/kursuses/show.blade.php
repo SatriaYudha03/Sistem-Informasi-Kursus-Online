@@ -51,7 +51,7 @@
                 @forelse($kursus->video_kursuses as $video)
                 <div class="item-card flex flex-row gap-y-10 justify-between items-center">
                     <div class="flex flex-row items-center gap-x-3">
-                        <iframe width="560" class="rounded-2xl object-cover w-[120px] h-[90px]" height="315" src="https://www.youtube-nocookie.com/embed/xsg9BDiwiJE?si=vKiuNGVjDDDJWOU3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe width="560" class="rounded-2xl object-cover w-[120px] h-[90px]" height="315" src="https://www.youtube.com/embed/{{ $video->path_video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         <div class="flex flex-col">
                             <h3 class="text-indigo-950 text-xl font-bold">{{ $video->name }}</h3>
                             <p class="text-slate-500 text-sm">{{ $video->kursus->name }}</p>
@@ -60,10 +60,10 @@
 
                     
                     <div class="flex flex-row items-center gap-x-3">
-                        <a href="#" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                        <a href="{{ route('admin.video_kursuses.edit', $video) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                             Edit Video
                         </a>
-                        <form action="#" method="POST">
+                        <form action="{{ route('admin.video_kursuses.destroy', $video) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">
