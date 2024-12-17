@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\InstrukturController;
@@ -11,15 +12,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
-Route::get('/details/{kursus:slug}', [FrontController::class, 'details'])->name('front.index');
+// Route::get('/details/{kursus:slug}', [FrontController::class, 'details'])->name('front.index');
 
 Route::get('/kategori/{kategori:slug}', [FrontController::class, 'kategori'])->name('front.kategori');
 
 Route::get('/harga', [FrontController::class, 'harga'])->name('front.harga');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -60,6 +61,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('video_kursuses', VideoKursusController::class)
         ->middleware('role:owner|instruktur');
     });
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 });
 
