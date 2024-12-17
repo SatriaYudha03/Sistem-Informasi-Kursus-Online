@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enroll;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EnrollController extends Controller
 {
@@ -12,7 +14,8 @@ class EnrollController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Enroll::with(['user'])->orderByDesc('id')->get();
+        return view('admin.enrolls.index', compact('transactions'));
     }
 
     /**
@@ -36,8 +39,8 @@ class EnrollController extends Controller
      */
     public function show(Enroll $enroll)
     {
-        //
-    }
+        return view('admin.enrolls.show', compact('enroll'));
+    }   
 
     /**
      * Show the form for editing the specified resource.
@@ -52,7 +55,15 @@ class EnrollController extends Controller
      */
     public function update(Request $request, Enroll $enroll)
     {
-        //
+        DB::transaction(function () use ($enroll) {
+
+            $enroll->update([
+                'is_paid' => true,
+                'enroll_start_date' => Carbon::now()
+            ]);
+        });
+
+        return redirect()->route('admin.enrolls.show', $enroll);
     }
 
     /**
