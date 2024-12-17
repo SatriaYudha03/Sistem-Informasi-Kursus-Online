@@ -37,7 +37,7 @@
                         <h3 class="text-indigo-950 text-xl font-bold">{{$kursus->instruktur->user->name}}</h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center gap-x-3">
-                        <a href="#" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                        <a href="{{ route('admin.kursuses.show', $kursus) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                             Manage
                         </a>
                         <form action="{{ route('admin.kursuses.destroy', $kursus) }}" method="POST">

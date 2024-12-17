@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreKursusRequest;
+use App\Http\Requests\UpdateKursusRequest;
 
 class KursusController extends Controller
 {
@@ -82,7 +83,7 @@ class KursusController extends Controller
      */
     public function show(Kursus $kursus)
     {
-        //
+        return view ('admin.kursuses.show', compact('kursus'));
     }
 
     /**
@@ -90,15 +91,38 @@ class KursusController extends Controller
      */
     public function edit(Kursus $kursus)
     {
-        //
+        $kategoris = Kategori::all();
+        return view ('admin.kursuses.edit', compact('kursus', 'kategoris'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kursus $kursus)
+    public function update(UpdateKursusRequest $request, Kursus $kursus)
     {
-        //
+        DB::transaction(function () use ($request, $kursus) {
+
+            $validated = $request->validated();
+            // dd($validated);
+            if($request->hasFile('thumbnail')){
+                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+                $validated['thumbnail'] = $thumbnailPath;
+            }
+
+        $validated['slug'] = Str::slug($validated['name']);
+        
+        $kursus->update($validated);
+
+        if(!empty($validated['materi_kursuses'])){
+            $kursus->materi_kursuses()->delete();
+            foreach($validated['materi_kursuses'] as $keypointText){
+                $kursus->materi_kursuses()->create([
+                    'name' => $keypointText,
+                ]);
+            }
+        }
+        });
+        return redirect()->route('admin.kursuses.show', $kursus);
     }
 
     /**
