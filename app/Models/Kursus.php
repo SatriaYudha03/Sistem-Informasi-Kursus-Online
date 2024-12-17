@@ -17,7 +17,7 @@ class Kursus extends Model
         'path_trailer',
         'thumbnail',
         'instruktur_id',
-        'kategori_id'
+        'kategori_id',
     ];
 
     public function kategori(){
@@ -32,7 +32,7 @@ class Kursus extends Model
     public function materi_kursuses(){
         return $this->hasMany(MateriKursus::class);
     }
-    public function pesertas(){
-        return $this->belongsToMany(User::class, 'KursusPeserta');
+    public function peserta(){
+        return $this->belongsToMany(User::class, 'kursus_pesertas');
     }
 }

@@ -17,7 +17,7 @@
                     @endforeach
                 @endif
                 
-                <form method="POST" action="#" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.kursuses.store') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div>
@@ -33,37 +33,23 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="teacher" :value="__('teacher')" />
-                        <x-text-input id="teacher" class="block mt-1 w-full" type="text" name="teacher_id" :value="old('teacher')" required autofocus autocomplete="teacher" />
-                        <x-input-error :messages="$errors->get('teacher')" class="mt-2" />
+                        <x-input-label for="path_trailer" :value="__('path_trailer')" />
+                        <x-text-input id="path_trailer" class="block mt-1 w-full" type="text" name="path_trailer" :value="old('path_trailer')" required autofocus autocomplete="path_trailer" />
+                        <x-input-error :messages="$errors->get('path_trailer')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <x-input-label for="teacher" :value="__('teacher')" />
+                        <x-input-label for="kategori" :value="__('kategori')" />
                         
-                        <select name="teacher_id" id="teacher_id" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
-                            <option value="">Choose item</option>
-                            @forelse($teachers as $teacher)
-                                <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                        <select name="kategori_id" id="kategori_id" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
+                            <option value="">Pilih Kategori</option>
+                            @forelse($kategoris as $kategori)
+                                <option value="{{$kategori->id}}">{{$kategori->name}}</option>
                             @empty
                             @endforelse
                         </select>
 
-                        <x-input-error :messages="$errors->get('category')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
-                        <x-input-label for="category" :value="__('category')" />
-                        
-                        <select name="category_id" id="category_id" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
-                            <option value="">Choose category</option>
-                            @forelse($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                            @empty
-                            @endforelse
-                        </select>
-
-                        <x-input-error :messages="$errors->get('category')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('kategori')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
@@ -79,7 +65,7 @@
                         <div class="flex flex-col gap-y-5">
                             <x-input-label for="keypoints" :value="__('keypoints')" />
                             @for ($i = 0; $i < 4; $i++)
-                                <input type="text" class="py-3 rounded-lg border-slate-300 border" placeholder="Write your copywriting" name="course_keypoints[]">
+                                <input type="text" class="py-3 rounded-lg border-slate-300 border" placeholder="Write your copywriting" name="materi_kursuses[]">
                             @endfor
                         </div>
                         <x-input-error :messages="$errors->get('keypoints')" class="mt-2" />

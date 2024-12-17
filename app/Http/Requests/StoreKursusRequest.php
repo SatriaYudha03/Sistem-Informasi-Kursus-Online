@@ -27,7 +27,7 @@ class StoreKursusRequest extends FormRequest
             'about' => 'required|string',
             'kategori_id' => 'required|integer',
             'thumbnail' => 'required|image|mimes:png,jpg,svg',
-            'materikursuses.*' => 'required|string|max:255',
+            'materi_kursuses.*' => 'required|string|max:255',
         ];
     }
 }
