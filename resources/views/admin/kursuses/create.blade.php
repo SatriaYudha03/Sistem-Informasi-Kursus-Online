@@ -63,9 +63,9 @@
                     <div class="mt-4">
                         
                         <div class="flex flex-col gap-y-5">
-                            <x-input-label for="keypoints" :value="__('keypoints')" />
+                            <x-input-label for="keypoints" :value="__('Materi Kursus')" />
                             @for ($i = 0; $i < 4; $i++)
-                                <input type="text" class="py-3 rounded-lg border-slate-300 border" placeholder="Write your copywriting" name="materi_kursuses[]">
+                                <input type="text" class="py-3 rounded-lg border-slate-300 border" placeholder="Nama materi" name="materi_kursuses[]">
                             @endfor
                         </div>
                         <x-input-error :messages="$errors->get('keypoints')" class="mt-2" />

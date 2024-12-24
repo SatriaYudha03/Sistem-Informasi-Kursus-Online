@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+}
+
+/* Header Section */
+header {
+    background-color: #000435;
+    color: white;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+header .nav-links {
+    list-style: none;
+    display: flex;
+}
+
+header .nav-links li {
+    margin-left: 20px;
+}
+
+header .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+header .nav-links a:hover {
+    color: #f7b731;
+}
+
+.text {
+    color: black;
+}
+
+/* Hero Section */
+.hero {
+    background: white;
+    color: #000435;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.benefit {
+    color: #000435;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    color: #000435;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #f7b731;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e09e2c;
+}
+
+/* Features Section */
+#features {
+    padding: 50px 0;
+    background-color: #fff;
+    margin-top: -60px;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    height: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.feature-icon {
+    flex-shrink: 0; /* Hindari gambar mengecil karena teks */
+    width: 80px; /* Ukuran tetap lingkaran */
+    height: 80px;
+    border-radius: 50%; /* Bikin lingkaran */
+    overflow: hidden;
+}
+
+.feature-icon img {
+    width: 100%; /* Isi lingkaran penuh */
+    height: 100%;
+    object-fit: cover; /* Potong gambar agar proporsional */
+}
+
+.feature-content h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.feature-content p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .feature-item {
+        width: 100%;
+    }
+}
+
+
+/* Sections General */
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.popular-course {
+    color: #000435;
+}
+
+/* Courses Section */
+.courses-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.course-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.course-item:hover {
+    transform: translateY(-10px);
+}
+
+.course-item h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.course-item p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.Contact {
+    color: #000435;
+}
+
+/* Contact Section */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+form input, form textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #f7b731;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #e09e2c;
+}
+
+/* Footer Section */
+footer {
+    background-color: #000435;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
