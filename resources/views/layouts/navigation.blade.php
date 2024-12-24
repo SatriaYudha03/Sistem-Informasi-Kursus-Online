@@ -28,7 +28,7 @@
                     </x-nav-link>
                     
                     <x-nav-link :href="route('admin.instrukturs.index')" :active="request()->routeIs('admin.instrukturs.index')">
-                        {{ __('Instruktur') }}
+                        {{ __('Instrukturrrr') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.enrolls.index')" :active="request()->routeIs('admin.enrolls.index')">
                         {{ __('Enroll') }}
