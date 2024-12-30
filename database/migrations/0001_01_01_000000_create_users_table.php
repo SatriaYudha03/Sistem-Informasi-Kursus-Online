@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('pekerjaan');
             $table->string('avatar');
             $table->string('email')->unique();
+            $table->string('telepon');
+            $table->string('gender');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

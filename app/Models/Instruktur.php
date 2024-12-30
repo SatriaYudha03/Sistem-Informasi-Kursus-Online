@@ -12,7 +12,8 @@ class Instruktur extends Model
 
     protected $fillable = [
         'user_id',
-        'is_active'
+        'is_active',
+        'bidang_keahlian'
     ];
 
     public function user(){

@@ -10,7 +10,7 @@
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
-                @role('owner')
+                @role('owner') 
                 <div class="item-card flex flex-col gap-y-10 md:flex-row justify-between items-center">
                     <div class="flex flex-col gap-y-3">
                         <svg width="46" height="46" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,7 +119,8 @@
                     Explore Katalog
                 </a>
                 @endrole
+               
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> 

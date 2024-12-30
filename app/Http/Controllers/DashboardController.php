@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $user = Auth::user();
         $queryKursuses = Kursus::query();
 
@@ -34,6 +35,11 @@ class DashboardController extends Controller
         $transactions = Enroll::count();
         $instrukturs = Instruktur::count();
 
-        return view('dashboard', compact('kategories', 'kursuses', 'transactions', 'pesertas', 'instrukturs'));
+        return view(
+            'dashboard',
+            compact(
+                'kategories', 'kursuses', 'transactions', 'pesertas', 'instrukturs'
+            )
+        );
     }
 }

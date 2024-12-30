@@ -26,9 +26,13 @@
                     <x-nav-link :href="route('admin.kategoris.index')" :active="request()->routeIs('admin.kategoris.index')">
                         {{ __('Kategori') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('admin.pesertas.index')" :active="request()->routeIs('admin.pesertas.index')">
+                        {{ __('Peserta') }}
+                    </x-nav-link>
                     
                     <x-nav-link :href="route('admin.instrukturs.index')" :active="request()->routeIs('admin.instrukturs.index')">
-                        {{ __('Instrukturrrr') }}
+                        {{ __('Instruktur') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.enrolls.index')" :active="request()->routeIs('admin.enrolls.index')">
                         {{ __('Enroll') }}

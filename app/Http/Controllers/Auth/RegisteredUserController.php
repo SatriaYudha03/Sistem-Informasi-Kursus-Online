@@ -34,6 +34,8 @@ class RegisteredUserController extends Controller
             'pekerjaan' => ['required', 'string', 'max:255'], 
             'avatar' => ['required', 'image', 'mimes:png,jpg,jpeg'], 
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'telepon' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
     
@@ -49,6 +51,8 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'pekerjaan' => $request->pekerjaan,
+            'telepon' => $request->telepon,
+            'gender' => $request->gender,
             'avatar' => $avatarPath,
             'password' => Hash::make($request->password),
         ]);

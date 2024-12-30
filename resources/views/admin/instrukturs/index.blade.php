@@ -22,7 +22,7 @@
                         <div class="flex flex-col">
                             {{-- <h3 class="text-indigo-950 text-xl font-bold">Budiono</h3> --}}
                             <h3 class="text-indigo-950 text-xl font-bold">{{ $instruktur->user->name }}</h3>
-                            <p class="text-slate-500 text-sm">{{ $instruktur->user->pekerjaan }}</p>
+                            <p class="text-slate-500 text-sm">{{ $instruktur->bidang_keahlian }}</p>
                         </div>
                     </div> 
                     <div class="hidden md:flex flex-col">

@@ -27,13 +27,26 @@ class RolePermissionSeeder extends Seeder
         ]);
         
         $userOwner = User::create([
-            'name' => 'Satria Yudha',
+            'name' => 'Admin',
             'pekerjaan' => 'Wirausaha',
             'avatar' => 'images/default-avatar.png',
-            'email' => 'satria@gmail.com',
+            'email' => 'admin@gmail.com',
+            'telepon' => '0812353235',
+            'gender' => 'Pria',
+            'password' => bcrypt('123123123')
+        ]);
+
+        $userInstruktur = User::create([
+            'name' => 'Instruktur1',
+            'pekerjaan' => 'Guru',
+            'avatar' => 'images/default-avatar.png',
+            'email' => 'instruktur1@gmail.com',
+            'telepon' => '0812353235',
+            'gender' => 'Pria',
             'password' => bcrypt('123123123')
         ]);
 
         $userOwner->assignRole($ownerRole);
+        $userInstruktur->assignRole($instrukturRole);
     }
 }

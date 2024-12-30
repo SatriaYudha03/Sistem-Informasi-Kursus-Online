@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EnrollController;
-use App\Http\Controllers\FrontController;
-use App\Http\Controllers\InstrukturController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\KursusController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VideoKursusController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\EnrollController;
+use App\Http\Controllers\KursusController;
+use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InstrukturController;
+use App\Http\Controllers\VideoKursusController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
@@ -42,6 +43,9 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:owner');
 
         Route::resource('instrukturs', InstrukturController::class)
+        ->middleware('role:owner');
+
+        Route::resource('pesertas', PesertaController::class)
         ->middleware('role:owner');
 
         Route::resource('kursuses', KursusController::class)

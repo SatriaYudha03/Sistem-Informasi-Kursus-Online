@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('path_trailer');
-            $table->string('about');
+            $table->string('deskripsi');
             $table->string('thumbnail');
-            $table->foreignId('instruktur_id')->constrained()->onDelete('cascade');
+            $table->integer('harga');
+            $table->integer('lama_belajar');
             $table->foreignId('kategori_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
