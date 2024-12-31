@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreKursusRequest;
 use App\Http\Requests\UpdateKursusRequest;
+use App\Models\MateriKursus;
 
 class KursusController extends Controller
 {
@@ -73,9 +74,9 @@ class KursusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kursus $kursus)
+    public function show(Kursus $kursus, MateriKursus $materikursus)
     {
-        return view ('admin.kursuses.show', compact('kursus'));
+        return view ('admin.kursuses.show', compact('kursus', 'materikursus'));
     }
 
     /**

@@ -12,7 +12,8 @@ class MateriKursus extends Model
 
     protected $fillable = [
         'name',
-        'kursus_id'
+        'kursus_id',
+        'file_materi'
     ];
 
     public function kursus(){

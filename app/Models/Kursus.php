@@ -31,9 +31,9 @@ class Kursus extends Model
     // public function video_kursuses(){
     //     return $this->hasMany(VideoKursus::class);
     // }
-    // public function materi_kursuses(){
-    //     return $this->hasMany(MateriKursus::class);
-    // }
+    public function materi_kursuses(){
+        return $this->hasMany(MateriKursus::class);
+    }
     // public function peserta(){
     //     return $this->belongsToMany(User::class, 'kursus_pesertas');
     // }

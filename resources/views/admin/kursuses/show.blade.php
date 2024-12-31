@@ -39,31 +39,34 @@
                 <hr class="my-5">
 
                 <div class="flex flex-row justify-between items-center">
-                    {{-- <div class="flex flex-col">
-                        <h3 class="text-indigo-950 text-xl font-bold">Course Videos</h3>
-                        <p class="text-slate-500 text-sm">{{$kursus->video_kursuses->count()}}</p>
-                    </div> --}}
-                    <a href="{{ route('admin.kursus.add_video', $kursus->id) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                    <div class="flex flex-col">
+                        <h3 class="text-indigo-950 text-xl font-bold">Materi Kursus</h3>
+                        <p class="text-slate-500 text-sm">{{$kursus->materi_kursuses->count()}}</p>
+                    </div>
+                    <a href="{{ route('admin.kursus.add_materi', $kursus->id) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                         Tambah Materi
                     </a>
                 </div>
 
-                {{-- @forelse($kursus->video_kursuses as $video)
+                @forelse($kursus->materi_kursuses as $materi)
                 <div class="item-card flex flex-row gap-y-10 justify-between items-center">
                     <div class="flex flex-row items-center gap-x-3">
-                        <iframe width="560" class="rounded-2xl object-cover w-[120px] h-[90px]" height="315" src="https://www.youtube.com/embed/{{ $video->path_video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                        <a href="{{ $materi->file_materi }}" target="_blank"><img width="560" class="rounded-2xl object-cover w-[120px] h-[90px]" height="315" src="{{ asset('images/icon-unduh.png') }}"></a>
+                        
+                        
                         <div class="flex flex-col">
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $video->name }}</h3>
-                            <p class="text-slate-500 text-sm">{{ $video->kursus->name }}</p>
+                            <h3 class="text-indigo-950 text-xl font-bold">{{ $materi->name }}</h3>
+                            <p class="text-slate-500 text-sm">{{ $materi->kursus->name }}</p>
                         </div>
                     </div>
 
                     
                     <div class="flex flex-row items-center gap-x-3">
-                        <a href="{{ route('admin.video_kursuses.edit', $video) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Edit Video
+                        <a href="{{ route('admin.materi_kursuses.edit', $materi) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                            Edit Materi
                         </a>
-                        <form action="{{ route('admin.video_kursuses.destroy', $video) }}" method="POST">
+                        <form action="{{ route('admin.materi_kursuses.destroy', $materi) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">
@@ -78,7 +81,7 @@
                     
                 </div>
                 @empty
-                @endforelse --}}
+                @endforelse
                 
             </div>
         </div>

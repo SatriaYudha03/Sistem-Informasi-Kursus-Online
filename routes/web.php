@@ -10,6 +10,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstrukturController;
 use App\Http\Controllers\VideoKursusController;
+use App\Http\Controllers\MateriKursusController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
@@ -49,21 +50,21 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:owner');
 
         Route::resource('kursuses', KursusController::class)
-        ->middleware('role:owner|instruktur');
+        ->middleware('role:owner');
 
         Route::resource('enrolls', EnrollController::class)
         ->middleware('role:owner');
 
-        Route::get('/add/video/{kursus:id}', [VideoKursusController::class, 'create'])
-        ->middleware('role:instruktur|owner')
-        ->name('kursus.add_video');
+        Route::get('/kursuses/{kursus:id}/add_materi', [MateriKursusController::class, 'create'])
+        ->middleware('role:owner')
+        ->name('kursus.add_materi');
     
-        Route::post('/add/video/save/{kursus:id}', [VideoKursusController::class, 'store'])
-        ->middleware('role:instruktur|owner')
-        ->name('kursus.add_video.save');
+        Route::post('/add/materikursus/save/{kursus:id}', [MateriKursusController::class, 'store'])
+        ->middleware('role:owner')
+        ->name('kursus.add_materi.save');
 
-        Route::resource('video_kursuses', VideoKursusController::class)
-        ->middleware('role:owner|instruktur');
+        Route::resource('materi_kursuses', MateriKursusController::class)
+        ->middleware('role:owner');
     });
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

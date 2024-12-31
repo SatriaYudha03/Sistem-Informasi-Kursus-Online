@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMateriKursusRequest;
 use App\Models\Kursus;
 use App\Models\VideoKursus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreVideoKursusRequest;
+use App\Models\MateriKursus;
 
 class VideoKursusController extends Controller
 {
@@ -55,24 +57,39 @@ class VideoKursusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(VideoKursus $videoKursus)
+    // public function edit(VideoKursus $videoKursus)
+    // {
+    //     return view ('admin.video_kursuses.edit', compact('videoKursus'));
+    // }
+    public function edit(MateriKursus $materikursus)
     {
-        return view ('admin.video_kursuses.edit', compact('videoKursus'));
+        return view ('admin.materi_kursuses.edit', compact('materikursus'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreVideoKursusRequest $request, VideoKursus $videoKursus)
+    // public function update(StoreVideoKursusRequest $request, VideoKursus $videoKursus)
+    // {
+    //     DB::transaction(function () use ($request, $videoKursus) {
+
+    //     $validated = $request->validated(); 
+        
+    //     $videoKursus->update($validated);
+    //     });
+
+    //     return redirect()->route('admin.kursuses.show', $videoKursus->kursus_id);
+    // }
+    public function update(StoreMateriKursusRequest $request, MateriKursus $materikursus)
     {
-        DB::transaction(function () use ($request, $videoKursus) {
+        DB::transaction(function () use ($request, $materikursus) {
 
         $validated = $request->validated(); 
         
-        $videoKursus->update($validated);
+        $materikursus->update($validated);
         });
 
-        return redirect()->route('admin.kursuses.show', $videoKursus->kursus_id);
+        return redirect()->route('admin.kursuses.show', $materikursus->kursus_id);
     }
 
     /**
