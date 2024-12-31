@@ -27,7 +27,7 @@
                             </div>
 
                             <div>
-                                <h3 class="text-indigo-950 text-xl font-bold">{{$kursus->lama_belajar}} bulan</h3>
+                                <h3 class="text-indigo-950 text-xl font-bold">{{$kursus->durasi}} bulan</h3>
                             </div>
 
                             <div>

@@ -23,8 +23,10 @@ class StoreKursusRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255', 
-            'lama_belajar' => 'required|integer|max:255',
+            'durasi' => 'required|integer|max:255',
             'deskripsi' => 'required|string|max:255',
+            'start_date' => 'required|string|max:255',
+            'end_date' => 'required|string|max:255',
             'kategori_id' => 'required|integer',
             'thumbnail' => 'required|image|mimes:png,jpg,svg',
             'harga' => 'required|integer|max:10000000',

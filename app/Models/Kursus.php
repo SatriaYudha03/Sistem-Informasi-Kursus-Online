@@ -14,8 +14,10 @@ class Kursus extends Model
         'name',
         'slug',
         'deskripsi',
-        'lama_belajar',
         'thumbnail',
+        'durasi',
+        'start_date',
+        'end_date',
         'harga',
         'kategori_id',
     ];

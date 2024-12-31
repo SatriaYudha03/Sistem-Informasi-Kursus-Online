@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->string('thumbnail');
             $table->integer('harga');
-            $table->integer('lama_belajar');
+            $table->integer('durasi');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->foreignId('kategori_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
