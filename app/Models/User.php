@@ -54,9 +54,9 @@ class User extends Authenticatable
         ];
     }
 
-    public function kursuses(){
-        return $this->belongsToMany(Kursus::class, 'KursusPeserta');
-    }
+    // public function kursuses(){
+    //     return $this->belongsToMany(Kursus::class, 'KursusPeserta');
+    // }
 
     public function enrolls(){
         return $this->hasMany(Enroll::class);

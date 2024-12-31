@@ -20,57 +20,59 @@
                 <form method="POST" action="{{ route('admin.kursuses.update', $kursus) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div>
-                        <x-input-label for="name" :value="__('Nama')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $kursus->name }}" required autofocus autocomplete="name" />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                    </div>
 
-                    <div class="mt-4">
-                        <x-input-label for="thumbnail" :value="__('Thumbnail')" />
-                        <img src="{{ Storage::url($kursus->thumbnail) }}" alt="" class="rounded-2xl object-cover w-[120px] h-[90px]">
-                        <x-text-input id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail" autofocus autocomplete="thumbnail" />
-                        <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
-                        <x-input-label for="path_trailer" :value="__('path_trailer')"  />
-                        <x-text-input id="path_trailer" class="block mt-1 w-full" type="text" name="path_trailer" value="{{ $kursus->path_trailer }}" required autofocus autocomplete="path_trailer" />
-                        <x-input-error :messages="$errors->get('path_trailer')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
+                    <div class="mb-4">
                         <x-input-label for="kategori" :value="__('Kategori')" />
                         
                         <select name="kategori_id" id="kategori_id" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
                             <option value="">Pilih Kategori</option>
                             @forelse($kategoris as $kategori)
-                                <option value="{{$kategori->id}}">{{$kategori->name}}</option>
+                                <option value="{{ $kategori->id }}" {{ $kursus->kategori_id == $kategori->id ? 'selected' : '' }}>
+                                    {{ $kategori->name }}
+                                </option>
                             @empty
+                                <option value="">Tidak ada kategori</option>
                             @endforelse
                         </select>
+                        
 
                         <x-input-error :messages="$errors->get('kategori')" class="mt-2" />
                     </div>
 
-                    <div class="mt-4">
-                        <x-input-label for="about" :value="__('Deskripsi')" />
-                        <textarea name="about" id="about" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full">{{ $kursus->about }}</textarea>
-                        <x-input-error :messages="$errors->get('about')" class="mt-2" />
+                    <div>
+                        <x-input-label for="name" :value="__('Nama Kursus')" />
+                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $kursus->name }}" required autofocus autocomplete="name" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
-                    <hr class="my-5">
+                    <div class="mt-4">
+                        <x-input-label for="deskripsi" :value="__('Deskripsi')" />
+                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full">{{ $kursus->deskripsi }}
+                        </textarea>
+                        <x-input-error :messages="$errors->get('deskripsi')" class="mt-2" />
+                    </div>
 
                     <div class="mt-4">
-                        
-                        <div class="flex flex-col gap-y-5">
-                            <x-input-label for="keypoints" :value="__('Materi')" />
-                            @forelse($kursus->materi_kursuses as $keypoint)
-                                <input type="text" class="py-3 rounded-lg border-slate-300 border" value="{{$keypoint->name}}" name="materi_kursuses[]">
-                            @empty
-                            @endforelse
-                        </div>
-                        <x-input-error :messages="$errors->get('keypoints')" class="mt-2" />
+                        <x-input-label for="thumbnail" :value="__('Thumbnail')" />
+                    
+                        @if ($kursus->thumbnail)
+                            <img src="{{ asset('storage/' . $kursus->thumbnail) }}" alt="Thumbnail" class="mb-3 w-32 h-32 object-cover rounded">
+                        @endif
+                    
+                        <x-text-input id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail" autofocus autocomplete="thumbnail" />
+                        <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="lama_belajar" :value="__('Lama Belajar')" />
+                        <x-text-input id="lama_belajar" class="block mt-1 w-full" type="text" name="lama_belajar" value="{{ $kursus->lama_belajar }}" required autofocus autocomplete="lama_belajar" />
+                        <x-input-error :messages="$errors->get('lama_belajar')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="harga" :value="__('Harga')" />
+                        <x-text-input id="harga" class="block mt-1 w-full" type="text" name="harga" value="{{ $kursus->harga }}" required autofocus autocomplete="harga" />
+                        <x-input-error :messages="$errors->get('harga')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">

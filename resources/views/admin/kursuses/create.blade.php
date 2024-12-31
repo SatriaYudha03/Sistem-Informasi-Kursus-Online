@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('New Course') }}
+            {{ __('Kursus Baru') }}
         </h2>
     </x-slot>
 
@@ -20,26 +20,8 @@
                 <form method="POST" action="{{ route('admin.kursuses.store') }}" enctype="multipart/form-data">
                     @csrf
 
-                    <div>
-                        <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
-                        <x-input-label for="thumbnail" :value="__('thumbnail')" />
-                        <x-text-input id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail" required autofocus autocomplete="thumbnail" />
-                        <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
-                        <x-input-label for="path_trailer" :value="__('path_trailer')" />
-                        <x-text-input id="path_trailer" class="block mt-1 w-full" type="text" name="path_trailer" :value="old('path_trailer')" required autofocus autocomplete="path_trailer" />
-                        <x-input-error :messages="$errors->get('path_trailer')" class="mt-2" />
-                    </div>
-
-                    <div class="mt-4">
-                        <x-input-label for="kategori" :value="__('kategori')" />
+                    <div class="mb-4">
+                        <x-input-label for="kategori" :value="__('Kategori')" />
                         
                         <select name="kategori_id" id="kategori_id" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
                             <option value="">Pilih Kategori</option>
@@ -52,29 +34,40 @@
                         <x-input-error :messages="$errors->get('kategori')" class="mt-2" />
                     </div>
 
-                    <div class="mt-4">
-                        <x-input-label for="about" :value="__('about')" />
-                        <textarea name="about" id="about" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
-                        <x-input-error :messages="$errors->get('about')" class="mt-2" />
+                    <div>
+                        <x-input-label for="name" :value="__('Nama Kursus')" />
+                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
-                    <hr class="my-5">
+                    <div class="mt-4">
+                        <x-input-label for="deskripsi" :value="__('Deskripsi')" />
+                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
+                        <x-input-error :messages="$errors->get('deskripsi')" class="mt-2" />
+                    </div>
 
                     <div class="mt-4">
-                        
-                        <div class="flex flex-col gap-y-5">
-                            <x-input-label for="keypoints" :value="__('keypoints')" />
-                            @for ($i = 0; $i < 4; $i++)
-                                <input type="text" class="py-3 rounded-lg border-slate-300 border" placeholder="Write your copywriting" name="materi_kursuses[]">
-                            @endfor
-                        </div>
-                        <x-input-error :messages="$errors->get('keypoints')" class="mt-2" />
+                        <x-input-label for="thumbnail" :value="__('Thumbnail')" />
+                        <x-text-input id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail" required autofocus autocomplete="thumbnail" />
+                        <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="lama_belajar" :value="__('Lama Belajar')" />
+                        <x-text-input id="lama_belajar" class="block mt-1 w-full" type="text" name="lama_belajar" :value="old('lama_belajar')" required autofocus autocomplete="lama_belajar" />
+                        <x-input-error :messages="$errors->get('lama_belajar')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input-label for="harga" :value="__('Harga')" />
+                        <x-text-input id="harga" class="block mt-1 w-full" type="text" name="harga" :value="old('harga')" required autofocus autocomplete="harga" />
+                        <x-input-error :messages="$errors->get('harga')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
             
                         <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Add New Course
+                            Tambah Kursus
                         </button>
                     </div>
                 </form>

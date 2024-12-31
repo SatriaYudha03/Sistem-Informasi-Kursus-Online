@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('kursus_id')->constrained()->onDelete('cascade');
+            $table->string('file_materi');
             $table->softDeletes();
             $table->timestamps();
         });

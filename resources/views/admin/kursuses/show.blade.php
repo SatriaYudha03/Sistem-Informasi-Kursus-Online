@@ -18,10 +18,10 @@
                             <p class="text-slate-500 text-sm">{{ $kursus->kategori->name }}</p>
                         </div>
                     </div>
-                    <div class="flex flex-col">
+                    {{-- <div class="flex flex-col">
                         <p class="text-slate-500 text-sm">Jumlah Peserta</p>
                         <h3 class="text-indigo-950 text-xl font-bold">{{$kursus->peserta->count()}}</h3>
-                    </div>
+                    </div> --}}
                     <div class="flex flex-row items-center gap-x-3">
                         <a href="{{ route('admin.kursuses.edit', $kursus) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                             Edit Course
@@ -39,16 +39,16 @@
                 <hr class="my-5">
 
                 <div class="flex flex-row justify-between items-center">
-                    <div class="flex flex-col">
+                    {{-- <div class="flex flex-col">
                         <h3 class="text-indigo-950 text-xl font-bold">Course Videos</h3>
                         <p class="text-slate-500 text-sm">{{$kursus->video_kursuses->count()}}</p>
-                    </div>
+                    </div> --}}
                     <a href="{{ route('admin.kursus.add_video', $kursus->id) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                        Add New Video
+                        Tambah Materi
                     </a>
                 </div>
 
-                @forelse($kursus->video_kursuses as $video)
+                {{-- @forelse($kursus->video_kursuses as $video)
                 <div class="item-card flex flex-row gap-y-10 justify-between items-center">
                     <div class="flex flex-row items-center gap-x-3">
                         <iframe width="560" class="rounded-2xl object-cover w-[120px] h-[90px]" height="315" src="https://www.youtube.com/embed/{{ $video->path_video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -78,7 +78,7 @@
                     
                 </div>
                 @empty
-                @endforelse
+                @endforelse --}}
                 
             </div>
         </div>

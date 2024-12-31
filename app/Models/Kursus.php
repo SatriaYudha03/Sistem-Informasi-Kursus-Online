@@ -13,10 +13,10 @@ class Kursus extends Model
     protected $fillable = [
         'name',
         'slug',
-        'about',
-        'path_trailer',
+        'deskripsi',
+        'lama_belajar',
         'thumbnail',
-        'instruktur_id',
+        'harga',
         'kategori_id',
     ];
 
@@ -26,13 +26,13 @@ class Kursus extends Model
     public function instruktur(){
         return $this->belongsTo(Instruktur::class);
     }
-    public function video_kursuses(){
-        return $this->hasMany(VideoKursus::class);
-    }
-    public function materi_kursuses(){
-        return $this->hasMany(MateriKursus::class);
-    }
-    public function peserta(){
-        return $this->belongsToMany(User::class, 'kursus_pesertas');
-    }
+    // public function video_kursuses(){
+    //     return $this->hasMany(VideoKursus::class);
+    // }
+    // public function materi_kursuses(){
+    //     return $this->hasMany(MateriKursus::class);
+    // }
+    // public function peserta(){
+    //     return $this->belongsToMany(User::class, 'kursus_pesertas');
+    // }
 }

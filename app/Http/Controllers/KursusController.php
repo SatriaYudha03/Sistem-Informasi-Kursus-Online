@@ -20,13 +20,13 @@ class KursusController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $query = Kursus::with(['kategori', 'instruktur', 'peserta'])->orderByDesc('id');
+        $query = Kursus::with('kategori')->orderByDesc('id');
 
-        if($user->hasRole('instruktur')){
-            $query->whereHas('instruktur', function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            });
-        }
+        // if($user->hasRole('owner')){
+        //     $query->whereHas('instruktur', function ($query) use ($user) {
+        //         $query->where('user_id', $user->id);
+        //     });
+        // }
 
         $kursuses = $query->paginate(10);
         return view ('admin.kursuses.index', compact('kursuses'));
@@ -45,38 +45,30 @@ class KursusController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreKursusRequest $request)
-    {
-        $instruktur = Instruktur::where('user_id', Auth::user()->id)->first();
-        // dd($instruktur);
-        if (!$instruktur) {
-            return redirect()->route('admin.kursuses.index')->withErrors('Instruktur tidak valid.');
+{
+    // Cek apakah pengguna memiliki peran "owner"
+    if (!Auth::user()->hasRole('owner')) {
+        return redirect()->route('admin.kursuses.index')->withErrors('Anda tidak memiliki izin untuk menambahkan kursus.');
+    }
+
+    DB::transaction(function () use ($request) {
+        $validated = $request->validated();
+        
+        // Upload thumbnail jika ada
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+            $validated['thumbnail'] = $thumbnailPath;
         }
 
-        DB::transaction(function () use ($request, $instruktur) {
-
-            $validated = $request->validated();
-            // dd($validated);
-            if($request->hasFile('thumbnail')){
-                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-                $validated['thumbnail'] = $thumbnailPath;
-            }
-
+        // Generate slug
         $validated['slug'] = Str::slug($validated['name']);
 
-        $validated['instruktur_id'] = $instruktur->id;
-        
-        $kursus = Kursus::create($validated);
-        // dd($kursus);
-        if(!empty($validated['materi_kursuses'])){
-            foreach($validated['materi_kursuses'] as $keypointText){
-                $kursus->materi_kursuses()->create([
-                    'name' => $keypointText,
-                ]);
-            }
-        }
-        });
-        return redirect()->route('admin.kursuses.index')->with('success', 'Course added successfully.');
-    }
+        // Buat kursus
+        Kursus::create($validated);
+    });
+
+    return redirect()->route('admin.kursuses.index')->with('success', 'Course added successfully.');
+}
 
     /**
      * Display the specified resource.
@@ -122,7 +114,7 @@ class KursusController extends Controller
             }
         }
         });
-        return redirect()->route('admin.kursuses.show', $kursus);
+        return redirect()->route('admin.kursuses.index', $kursus);
     }
 
     /**
