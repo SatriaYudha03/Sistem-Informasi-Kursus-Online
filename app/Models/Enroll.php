@@ -24,6 +24,6 @@ class Enroll extends Model
         return $this->belongsTo(User::class);
     }
     public function kelas(){
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 }

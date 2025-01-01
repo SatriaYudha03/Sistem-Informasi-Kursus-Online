@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreKelasRequest;
-use App\Http\Requests\UpdateKelasRequest;
+use App\Models\User;
 use App\Models\Kelas;
+use App\Models\Enroll;
 use App\Models\Kursus;
 use App\Models\Instruktur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreKelasRequest;
+use App\Http\Requests\UpdateKelasRequest;
 
 class KelasController extends Controller
 {
@@ -20,7 +22,7 @@ class KelasController extends Controller
     {
         $user = Auth::user();
         $kelases = Kelas::all();
-        return view ('admin.kelases.index', compact('kelases'));
+        return view ('admin.kelases.index', compact('kelases', 'user'));
     }
 
     /**
@@ -56,9 +58,10 @@ class KelasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kelas $kelas)
+    public function show(Kelas $kelase)
     {
-        return view ('admin.kelases.show');
+        $pesertas = Enroll::where('kelas_id', $kelase->id)->get();
+        return view ('admin.kelases.show', compact('pesertas'));
     }
 
     /**
