@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreKelasRequest;
 use App\Http\Requests\UpdateKelasRequest;
+use App\Models\Jadwal;
 
 class KelasController extends Controller
 {
@@ -61,7 +62,9 @@ class KelasController extends Controller
     public function show(Kelas $kelase)
     {
         $pesertas = Enroll::where('kelas_id', $kelase->id)->get();
-        return view ('admin.kelases.show', compact('pesertas'));
+        $jadwals = Jadwal::where('kelas_id', $kelase->id)->get();
+        $kelas = Kelas::where('id', $kelase->id)->get()->first();
+        return view ('admin.kelases.show', compact('pesertas', 'jadwals','kelas'));
     }
 
     /**
