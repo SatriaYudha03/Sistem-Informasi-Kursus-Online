@@ -31,7 +31,7 @@
                     <!-- Pekerjaan -->
                     <div class="mt-4">
                         <x-input-label for="pekerjaan" :value="__('pekerjaan')" />
-                        <x-text-input id="pekerjaan" class="block mt-1 w-full" type="text" name="pekerjaan" :value="old('pekerjaan')" required autocomplete="username" />
+                        <x-text-input id="pekerjaan" class="block mt-1 w-full" type="text" name="pekerjaan" :value="old('pekerjaan')" required autocomplete="pekerjaan" />
                         <x-input-error :messages="$errors->get('pekerjaan')" class="mt-2" />
                     </div>
             

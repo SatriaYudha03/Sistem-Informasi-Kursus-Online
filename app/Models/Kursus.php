@@ -28,6 +28,9 @@ class Kursus extends Model
     public function instruktur(){
         return $this->belongsTo(Instruktur::class);
     }
+    public function kursus(){
+        return $this->hasMany(Kursus::class);
+    }
     // public function video_kursuses(){
     //     return $this->hasMany(VideoKursus::class);
     // }

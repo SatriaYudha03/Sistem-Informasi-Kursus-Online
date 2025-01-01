@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstrukturController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\VideoKursusController;
 use App\Http\Controllers\MateriKursusController;
 
@@ -50,6 +51,9 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:owner');
 
         Route::resource('kursuses', KursusController::class)
+        ->middleware('role:owner');
+
+        Route::resource('kelases', KelasController::class)
         ->middleware('role:owner');
 
         Route::resource('enrolls', EnrollController::class)

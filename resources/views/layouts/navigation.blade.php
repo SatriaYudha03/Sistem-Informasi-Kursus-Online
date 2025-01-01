@@ -16,13 +16,15 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    @role('owner|instruktur')
+                    @role('owner')
                     <x-nav-link :href="route('admin.kursuses.index')" :active="request()->routeIs('admin.kursuses.index')">
                         {{ __('Kursus') }}
                     </x-nav-link>
-                    @endrole
 
-                    @role('owner')
+                    <x-nav-link :href="route('admin.kelases.index')" :active="request()->routeIs('admin.kelases.index')">
+                        {{ __('Kelas') }}
+                    </x-nav-link>
+                    
                     <x-nav-link :href="route('admin.kategoris.index')" :active="request()->routeIs('admin.kategoris.index')">
                         {{ __('Kategori') }}
                     </x-nav-link>

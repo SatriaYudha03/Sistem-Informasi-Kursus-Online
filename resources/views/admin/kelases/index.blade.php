@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Kelola Peserta') }}
+                {{ __('Kelola Kelas') }}
             </h2>
-            <a href="{{ route('admin.pesertas.create') }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                Tambah Peserta
+            <a href="{{ route('admin.kelases.create') }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                Tambah Kelas
             </a>
         </div>
     </x-slot>
@@ -19,46 +19,46 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
-                                    Nama
+                                    No.
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Pekerjaan
+                                    Nama Kelas
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Email
+                                    Kursus
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Telepon
+                                    Instruktur
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Jenis Kelamin
+                                    Ruangan
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Action
                                 </th>
                             </tr>
                         </thead>
-                        @foreach ($pesertas as $peserta)       
+                        @foreach ($kelases as $kelas)       
                         <tr class="odd:bg-white even:bg-gray-50 border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ $peserta->name }} 
+                                {{ $loop->iteration }}
                             </th>
                              <td class="px-6 py-4">
-                                {{ $peserta->pekerjaan }} 
+                                {{ $kelas->nama }} 
                             </td>
                             <td class="px-6 py-4">
-                                {{ $peserta->email }} 
+                                {{ $kelas->kursus->name }} 
                             </td>
                             <td class="px-6 py-4">
-                                {{ $peserta->telepon }} 
+                                {{ $kelas->instruktur->user->name }} 
                             </td>
                             <td class="px-6 py-4">
-                                {{ $peserta->gender }} 
+                                {{ $kelas->ruangan }} 
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex"></div>
-                                    <a href="{{ route('admin.pesertas.edit', $peserta) }}" class="flex font-medium text-blue-600 hover:underline">Edit</a>
-                                    <form action="{{ route('admin.pesertas.destroy', $peserta->id) }}" method="POST">
+                                    <a href="{{ route('admin.kelases.edit', $kelas) }}" class="flex font-medium text-blue-600 hover:underline">Edit</a>
+                                    <form action="{{ route('admin.kelases.destroy', $kelas->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <input type="submit" class="flex font-medium text-blue-600 hover:underline" value="Delete">
