@@ -23,4 +23,7 @@ class Kelas extends Model
     public function instruktur(){
         return $this->belongsTo(Instruktur::class, 'instruktur_id');
     }
+    public function jadwal(){
+        return $this->hasMany(Jadwal::class,  'jadwal_id');
+    }
 }
