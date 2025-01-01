@@ -48,7 +48,7 @@
                             <option value="Sabtu">Sabtu</option>
                         </select>
                     
-                        <x-input-error :messages="$errors->get('ruangan')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('hari')" class="mt-2" />
                     </div>
                     
                     <div class="grid grid-cols-2 gap-4">

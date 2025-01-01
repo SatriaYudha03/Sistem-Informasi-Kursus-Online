@@ -13,4 +13,7 @@ class FrontController extends Controller
     public function details(Kursus $kursus){
         return view('front.details');
     }
+    public function login(){
+        return view('front.login');
+    }
 }

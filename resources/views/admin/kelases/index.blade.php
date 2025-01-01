@@ -57,6 +57,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex"></div>
+                                    <a href="{{ route('admin.kelases.show', $kelas) }}" class="flex font-medium text-blue-600 hover:underline">Detail</a>
                                     <a href="{{ route('admin.kelases.edit', $kelas) }}" class="flex font-medium text-blue-600 hover:underline">Edit</a>
                                     <form action="{{ route('admin.kelases.destroy', $kelas->id) }}" method="POST">
                                         @csrf

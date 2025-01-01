@@ -16,16 +16,17 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         $queryKursuses = Kursus::query();
+        
 
         if($user->hasRole('instruktur')){
             $queryKursuses->whereHas('instruktur', function ($query) use ($user) {
                 $query->where('user_id', $user->id);
             });
-            $pesertas = KursusPeserta::whereIn('kursus_id', $queryKursuses->select('id'))
+            $pesertas = Enroll::whereIn('user_id', $queryKursuses->select('id'))
             ->distinct('user_id')
             ->count('user_id');
         } else {
-            $pesertas = KursusPeserta::distinct('user_id')
+            $pesertas = Enroll::distinct('user_id')
             ->count('user_id');
         }
 

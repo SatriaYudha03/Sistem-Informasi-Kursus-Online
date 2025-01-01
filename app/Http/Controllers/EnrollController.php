@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Enroll;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Kelas;
+use App\Models\Enroll;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreEnrollRequest;
 
 class EnrollController extends Controller
 {
@@ -14,8 +18,9 @@ class EnrollController extends Controller
      */
     public function index()
     {
-        $transactions = Enroll::with(['user'])->orderByDesc('id')->get();
-        return view('admin.enrolls.index', compact('transactions'));
+        $user = Auth::user();
+        $enrolls = Enroll::with(['user'])->orderByDesc('id')->get();
+        return view('admin.enrolls.index', compact('enrolls'));
     }
 
     /**
@@ -23,15 +28,39 @@ class EnrollController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $kelases = Kelas::with('kursus')->get();
+
+        return view ('admin.enrolls.create', compact('users','kelases'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEnrollRequest $request)
     {
-        //
+        if (!Auth::user()->hasRole('owner')) {
+            return redirect()->route('admin.enrolls.index')->withErrors('Anda tidak memiliki izin untuk menambahkan jadwal.');
+        }
+
+        $validated = $request->validated();
+
+        $user = User::where('email', $validated['email'])->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Data tidak ditemukan'
+            ]);
+        }
+
+        DB::transaction(function () use ($user, $validated) {
+
+            $validated['user_id'] = $user->id;
+
+            Enroll::create($validated);
+        });
+
+        return redirect()->route('admin.enrolls.index');
     }
 
     /**

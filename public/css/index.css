@@ -1,0 +1,523 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Style untuk Navbar Horizontal */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    height: 50px; /* Atur tinggi logo */
+    width: auto; /* Jaga aspek rasio logo */
+    display: block; /* Memastikan logo terpusat jika diperlukan */
+}
+
+header {
+    background-color: #2c3e50;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+/* Sticky Navbar */
+nav.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(44, 62, 80, 0.9);
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+nav .navbar .login{
+    border-radius: 10px;
+    background-color: white;
+    color:#34495e;
+    padding: 10px;
+    padding-inline: 24px;
+    text-decoration: none;
+    font-size: 15px;
+}
+nav .navbar .login:hover{
+    background-color: #7f8c8d;
+}
+.navbar {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 80px;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    vertical-align: middle;
+}
+
+.nav-links li {
+    display: inline;
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    background-color: #34495e; /* Warna saat hover */
+}
+
+/* Tambahkan sedikit responsivitas */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: block;
+        text-align: center;
+    }
+
+    .nav-links li {
+        display: block;
+        margin: 5px 0;
+    }
+
+    .navbar {
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('/images/main.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 3% center;
+    height: 100vh;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+/* Typewriter Effect */
+.hero-content h1 {
+    overflow: hidden; /* Ensures text doesn't wrap */
+    white-space: nowrap; /* Keeps the text on a single line */
+    border-right: 3px solid white; /* Cursor effect */
+    animation: typing 3s steps(20, end), blink 0.5s step-end infinite;
+}
+
+.hero-content {
+    margin-top: -70px;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    color: white ;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-top: -60px;
+    color: white;
+}
+
+
+.about {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+/* Gaya Animasi Text */
+.text-animation {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    text-align: center;
+    height: 40px; /* Tinggi kontainer teks */
+    line-height: 40px; /* Vertikal rata tengah teks */
+    overflow: hidden; /* Sembunyikan teks yang keluar */
+    position: relative;
+}
+
+.text-animation span {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    font-size: xx-large;
+}
+
+.about h1 {
+    font-size: 3rem;
+}
+
+.about p {
+    font-size: 1rem;
+}
+
+.courses {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.benefit {
+    text-align: center;
+    padding-bottom: -100px;
+}
+
+.benefit h1 {
+    font-size: 3rem;
+}
+
+.courses h1 {
+    font-size: 3rem;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.courses p {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 40px;
+    margin-top: -15px;
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    height: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.feature-icon {
+    flex-shrink: 0; /* Hindari gambar mengecil karena teks */
+    /* width: 80px; Ukuran tetap lingkaran */
+    height: 80px;
+    /* border-radius: 50%; Bikin lingkaran */
+    overflow: hidden;
+}
+
+.feature-icon img {
+    width: 100%; /* Isi lingkaran penuh */
+    height: 100%;
+    object-fit: cover; /* Potong gambar agar proporsional */
+}
+
+.feature-content h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 20px;
+}
+
+.feature-content p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Section kursus */
+.courses {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+/* Kontainer kartu kursus */
+.course-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+    gap: 20px; /* Jarak antar kolom */
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 1200px; /* Batasi lebar untuk menghindari kolom terlalu lebar */
+}
+
+/* Kartu kursus */
+.course-card {
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 300px; /* Maksimal lebar kartu */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card h3 {
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+.course-card p {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+/* Efek hover pada kartu */
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsivitas pada ukuran layar kecil */
+@media screen and (max-width: 768px) {
+    .courses-container h1 {
+        font-size: 2rem;
+    }
+
+    .courses-container p {
+        font-size: 1rem;
+    }
+
+    .course-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom pada layar kecil */
+    }
+
+    .course-card {
+        max-width: 90%; /* Membatasi lebar kartu agar lebih responsif */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .course-list {
+        grid-template-columns: 1fr; /* 1 kolom pada layar sangat kecil */
+    }
+
+    .course-card {
+        max-width: 100%;
+    }
+}
+
+.btn-secondary {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #ffd000; /* Warna tombol */
+    color: black; /* Warna teks */
+    text-decoration: none; /* Menghilangkan underline */
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #ffd727; /* Warna saat hover */
+}
+
+/* Kursus Detail Page */
+.course-details {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.course-details h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: left;
+    padding-right: 300px;
+}
+
+.course-details p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    text-align: left;
+    padding-right: 300px;
+    color: #34495e;
+}
+
+.course-details {
+    text-align: left;
+}
+
+.course-details .course-info {
+    max-width: 1000px; /* Membatasi lebar maksimum kontainer */
+    margin: 0 auto; /* Pusatkan kontainer di tengah */
+    text-align: left; /* Teks rata kiri */
+}
+
+.course-details .btn-primary {
+    background-color: #34495e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.course-details .btn-primary:hover {
+    background-color: #2c3e50;
+}
+
+.content {
+    width: 80%; /* Sesuaikan dengan lebar kontainer */
+    margin: 0 auto;
+}
+
+.text {
+    float: left;
+    width: 60%; /* Teks mengambil 60% lebar kontainer */
+    margin-right: 50px; /* Memberikan jarak antara teks dan gambar */
+}
+
+.image {
+    float: right;
+    width: 30%; /* Gambar mengambil 30% lebar kontainer */
+    margin-top: -270px; /* Memberikan jarak dari atas */
+    margin-bottom: 30px;
+}
+
+/* Outlet Section */
+.outlet {
+    text-align: center;
+    padding: 100px 50px;
+}
+
+.outlet h1 {
+    font-size: 3rem;
+    margin-bottom: -10px;
+}
+
+.outlet p {
+    font-size: 1.5rem;
+}
+
+.bali img {
+    width: 100%;
+    height: auto;
+    max-width: 1000px; /* Maksimalkan lebar gambar sesuai ukuran web */
+    margin: 0 auto; /* Pusatkan gambar */
+    display: block; /* Pastikan gambar tampil sebagai blok */
+}
+
+.outlet-content h1 {
+    font-size: 3rem;
+}
+
+.outlet-content p {
+    font-size: 1.5rem;
+    margin-top: -40px;
+}
+
+.outlet-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Jarak antar elemen */
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
+.stats {
+    display: flex; /* Susun elemen secara horizontal */
+    justify-content: center; /* Posisi di tengah */
+    gap: 300px; /* Jarak antar elemen */
+    margin-top: 20px; /* Jarak ke atas */
+}
+
+.tulisan {
+    display: flex;
+    flex-direction: column; /* Angka dan teks tetap tersusun vertikal */
+    align-items: center;
+}
+
+.tulisan h1 {
+    font-size: 4rem; /* Ukuran teks besar */
+    color: #34495e; /* Warna teks */
+    margin: 0;
+}
+  
+.tulisan p {
+    font-size: 1.5rem; /* Ukuran teks kecil */
+    color: #333; /* Warna teks */
+    margin: 5px 0 0 0;
+}  
+
+/* Contact Section */
+.contact h1 {
+    font-size: 3rem;
+    color: black;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+form input, form textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #ffd000;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #ffd727;
+}
+
+/* Footer Section */
+footer {
+    background-color: #34495e;
+    color: #fff;
+    padding: 20px 80px;
+    text-align: center;
+    font-size: 0.9rem;
+}

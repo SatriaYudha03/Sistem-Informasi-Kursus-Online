@@ -15,6 +15,7 @@ use App\Http\Controllers\VideoKursusController;
 use App\Http\Controllers\MateriKursusController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
+// Route::get('auth/login', [FrontController::class, 'login'])->name('auth.login');
 
 // Route::get('/details/{kursus:slug}', [FrontController::class, 'details'])->name('front.index');
 

@@ -20,8 +20,8 @@
                         </svg>
                     <div class="flex flex-col gap-y-10">    
                         <div>
-                            <p class="text-slate-500 text-sm">Total Amount</p>
-                            <h3 class="text-indigo-950 text-xl font-bold">Rp{{ $enroll->total_amount }}</h3>
+                            <p class="text-slate-500 text-sm">Total Pembayaran</p>
+                            <h3 class="text-indigo-950 text-xl font-bold">Rp{{ $enroll->transaksi }}</h3>
                         </div>
                         @if($enroll->is_paid)
                         <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
@@ -33,12 +33,12 @@
                         </span>
                         @endif
                         <div>
-                            <p class="text-slate-500 text-sm">CheckOut Date</p>
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $enroll->created_at }}</h3>
+                            <p class="text-slate-500 text-sm">Kelas</p>
+                            <h3 class="text-indigo-950 text-xl font-bold">{{ $enroll->kelas->nama }}</h3>
                         </div>
                         <div>
-                            <p class="text-slate-500 text-sm">Subcription Start At</p>
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $enroll->enroll_start_date }}</h3>
+                            <p class="text-slate-500 text-sm">Tanggal Enroll</p>
+                            <h3 class="text-indigo-950 text-xl font-bold">{{ $enroll->tanggal_enroll }}</h3>
                         </div>
                         <div class="">
                             <p class="text-slate-500 text-sm">Student</p>

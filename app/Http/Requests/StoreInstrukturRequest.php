@@ -23,7 +23,8 @@ class StoreInstrukturRequest extends FormRequest
     {
         return [
             'email' => 'required|string|email|max:255',
-            'bidang_keahlian' => 'required|string|max:255'
+            'bidang_keahlian' => 'required|string|max:255',
+            
         ];
     }
 }

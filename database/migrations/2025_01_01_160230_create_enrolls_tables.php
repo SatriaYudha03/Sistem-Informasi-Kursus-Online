@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('enrolls', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('total_amount');
-            $table->boolean('is_paid');
-            $table->date('enroll_start_date')->nullable();
-            $table->string('proof');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('transaksi'); 
+            $table->boolean('is_paid')->default(0); 
+            $table->string('proof')->nullable(); 
+            $table->string('jenis_pembayaran');
+            $table->string('tanggal_enroll');
+            $table->foreignId('user_id')->constrained(); 
+            $table->foreignId('kelas_id')->constrained(); 
             $table->softDeletes();
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

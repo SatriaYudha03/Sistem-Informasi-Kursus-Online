@@ -11,7 +11,7 @@ class StoreEnrollRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->hasAnyRole(['peserta']);
+        return $this->user()->hasAnyRole(['owner']);
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreEnrollRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'proof' => 'required|image|mimes:png,jpg'
+            'email' => 'required|string|email|max:255',
+            'proof' => 'required|image|mimes:png,jpg',
+            'jenis_pembayaran' => 'required|string|max:255',
+            'transaksi' => 'required|integer|max:10000000',
+            'tanggal_enroll' => 'required|string|max:255',
+            'kelas_id' => 'required|integer',
+            // 'user_id' => 'required|integer',
         ];
     }
 }

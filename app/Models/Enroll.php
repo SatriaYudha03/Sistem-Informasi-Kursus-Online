@@ -11,14 +11,19 @@ class Enroll extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'total_amount',
+        'transaksi',
         'is_paid',
-        'user_id',
         'proof',
-        'enroll_start_date'
+        'jenis_pembayaran',
+        'user_id',
+        'kelas_id',
+        'tanggal_enroll'
     ];
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function kelas(){
+        return $this->belongsTo(Kelas::class);
     }
 }

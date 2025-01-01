@@ -58,7 +58,7 @@ class KelasController extends Controller
      */
     public function show(Kelas $kelas)
     {
-        //
+        return view ('admin.kelases.show');
     }
 
     /**
