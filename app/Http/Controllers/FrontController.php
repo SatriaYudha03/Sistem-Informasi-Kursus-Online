@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 class FrontController extends Controller
 {
     public function index(){
-        return view('front.index');
+
+        $kursuses = Kursus::with(['Kategori', 'teacher', 'students'])->get();
+
+        return view('front.index', compact('kursuses'));
     }
     public function details(Kursus $kursus){
         return view('front.details');

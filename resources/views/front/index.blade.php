@@ -18,7 +18,6 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#courses">Course</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="#contact">Register</a></li>
                 </ul>
                 <a class="login" href="{{ route('login') }}">Login</a>
             <div>
