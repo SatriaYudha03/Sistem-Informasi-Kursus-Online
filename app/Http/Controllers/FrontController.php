@@ -9,9 +9,11 @@ class FrontController extends Controller
 {
     public function index(){
 
-        $kursuses = Kursus::with(['Kategori', 'teacher', 'students'])->get();
+        $kursuses = Kursus::with(['kategori', 'instruktur'])->orderByDesc('id')->get();
+
 
         return view('front.index', compact('kursuses'));
+        // return view('front.index');
     }
     public function details(Kursus $kursus){
         return view('front.details');

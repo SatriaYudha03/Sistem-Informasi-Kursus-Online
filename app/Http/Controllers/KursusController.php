@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Kelas;
+use App\Models\Enroll;
 use App\Models\Kursus;
 use App\Models\Kategori;
 use App\Models\Instruktur;
 use Illuminate\Support\Str;
+use App\Models\MateriKursus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreEnrollRequest;
 use App\Http\Requests\StoreKursusRequest;
 use App\Http\Requests\UpdateKursusRequest;
-use App\Models\MateriKursus;
 
 class KursusController extends Controller
 {
@@ -134,5 +138,94 @@ class KursusController extends Controller
             DB::rollBack();
             return redirect()->route('admin.kursuses.index')->with('error', 'terjadi sebuah error'); 
         }
+    }
+
+    // peserta
+    public function beli_kursus()
+    {
+        $user = Auth::user();
+        $query = Kursus::with('kategori')->orderByDesc('id');
+        
+        $kursuses = $query->paginate(10);
+
+        return view ('peserta.kursuses.beli_kursus', compact('kursuses'));
+    }
+
+    public function detail_kursus(Kursus $kursus)
+    {
+      // Memuat relasi kelas dan jadwals
+      $kursus->load('kelas.jadwal');
+        
+      // Mengambil semua kategori (untuk dropdown, jika diperlukan)
+      $kategoris = Kategori::all();
+
+      // Menampilkan view dengan data
+      return view('peserta.kursuses.detail_kursus', compact('kursus', 'kategoris'));
+    }
+
+    public function enroll_kursus(Kursus $kursus)
+    {
+        // Memuat relasi kelas dan jadwals
+      $kursus->load('kelas.jadwal');
+        
+      // Mengambil semua kategori (untuk dropdown, jika diperlukan)
+      $kategoris = Kategori::all();
+
+      $kelases = $kursus->kelas;
+
+      // Menampilkan view dengan data
+      return view('peserta.kursuses.enroll_kursus', compact('kursus', 'kategoris', 'kelases'));
+    }
+
+    public function storeEnroll(StoreEnrollRequest $request)
+    {
+        if (!Auth::user()->hasRole('peserta')) {
+            return redirect()->route('peserta.kursuses')->withErrors('enroll gagal');
+        }
+
+        $validated = $request->validated();
+
+        $user = User::where('email', $validated['email'])->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Data tidak ditemukan'
+            ]);
+        }
+
+        DB::transaction(function () use ($user, $validated) {
+
+            $validated['user_id'] = $user->id;
+            $validated['jenis_pembayaran'] = 'transfer';
+
+            Enroll::create($validated);
+        });
+
+        return redirect()->route('peserta.kursuses');
+    }
+
+    public function mykursuses()
+    {
+        $user = Auth::user();
+
+        // Ambil data kursus berdasarkan enroll user login
+        $enrolls = Enroll::where('user_id', $user->id)
+            ->where('is_paid', 1) // Hanya enroll yang sudah dibayar
+            ->with(['kelas.kursus.kategori']) // Load relasi ke kursus dan kategori
+            ->get();
+    // dd($kursuses);
+        return view('peserta.kursuses.mykursuses', compact('enrolls'));
+    }
+
+    public function kursuses_show(Kursus $kursus)
+    {
+      // Memuat relasi kelas dan jadwals
+      $kursus->load('kelas.jadwal');
+        
+      // Mengambil semua kategori (untuk dropdown, jika diperlukan)
+      $kategoris = Kategori::all();
+
+      // Menampilkan view dengan data
+      return view('peserta.kursuses.show', compact('kursus', 'kategoris'));
     }
 }

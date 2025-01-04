@@ -45,6 +45,18 @@
                         {{ __('Enroll') }}
                     </x-nav-link>
                     @endrole
+
+                    @role('peserta')
+                    {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link> --}}
+                    <x-nav-link :href="route('peserta.kursuses')" :active="request()->routeIs('peserta.kursuses')">
+                        {{ __('Beli Kursus') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('peserta.mykursuses')" :active="request()->routeIs('peserta.mykursuses')">
+                        {{ __('Kursus Saya') }}
+                    </x-nav-link>
+                    @endrole
                 </div>
             </div>
 

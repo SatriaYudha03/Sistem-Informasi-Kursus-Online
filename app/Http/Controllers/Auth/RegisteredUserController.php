@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
             'avatar' => $avatarPath,
             'password' => Hash::make($request->password),
         ]);
-
+        $user->assignRole('peserta');
         event(new Registered($user));
 
         Auth::login($user);

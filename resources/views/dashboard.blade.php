@@ -110,15 +110,14 @@
                     </a>
                 </div>
                 @endrole
-                @role('peserta')
+                
+                @if(!Auth::user()->hasRole('owner') && !Auth::user()->hasRole('instruktur'))
                 <h3 class="text-indigo-950 font-bold text-2xl">Tingkatkan Skill Hari Ini!</h3>
-                <p class="text-slate-500 text-base">
-                    Kembangkan karirmu bersama instruktur berpengalaman dari SkillUp!
-                </p>
-                <a href="{{route('front.index')}}" class="w-fit font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                <p class="text-slate-500 text-base">Kembangkan karirmu bersama instruktur berpengalaman dari SkillUp!</p>
+                {{-- <a href="{{route('front.index')}}" class="w-fit font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                     Explore Katalog
-                </a>
-                @endrole
+                </a> --}}
+            @endif
                
             </div>
         </div>
