@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Details Informations') }}
+                {{ __('Detail Enroll') }}
             </h2>
         </div>
     </x-slot>
@@ -46,7 +46,8 @@
                         </div>
                     </div>
                     <div>
-                        <img src="{{Storage::url($enroll->proof)}}" alt="">
+                        {{-- <img src="{{Storage::url($enroll->proof)}}" alt=""> --}}
+                        <img src="{{ Storage::url($enroll->proof) }}" alt="Proof">
                     </div>
                 </div>
                 <hr class="my-5">

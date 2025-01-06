@@ -40,7 +40,7 @@
                         <x-input-error :messages="$errors->get('kelas')" class="mt-2" />
                     </div>
                     
-                    <div class="mt-4">
+                    <div class="mt-4 mb-4">
                         <x-input-label for="proof" :value="__('proof')" />
                         <x-text-input id="proof" class="block mt-1 w-full" type="file" name="proof" required autofocus autocomplete="proof" />
                         <x-input-error :messages="$errors->get('proof')" class="mt-2" />
@@ -48,10 +48,10 @@
 
 
                     <div class="mb-4">
-                        <x-input-label for="is_paid" :value="__('Sudah Bayar?')" />
+                        <x-input-label for="is_paid" :value="__('Status Pembayaran')" />
                         <select name="is_paid" id="is_paid" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
-                            <option value="0">Belum</option>
-                            <option value="1">Sudah</option>
+                            <option value="0">Menunggu Verifikasi</option>
+                            {{-- <option value="1">Terverivikasi</option> --}}
                         </select>
                         <x-input-error :messages="$errors->get('is_paid')" class="mt-2" />
                     </div>
@@ -68,7 +68,7 @@
                     </div>
 
                     <!-- Tanggal Enroll -->
-                    <div class="mt-4">
+                    <div class="mt-4 mb-4">
                         <x-input-label for="tanggal_enroll" :value="__('Tanggal Enroll')" />
 
                         <div class="relative max-w-sm">
