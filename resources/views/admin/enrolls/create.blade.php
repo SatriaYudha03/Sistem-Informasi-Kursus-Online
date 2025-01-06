@@ -27,21 +27,21 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input-label for="kelases" :value="__('Kelas')" />
+                        <x-input-label for="kelas_id" :value="__('Kelas')" />
                         
                         <select name="kelas_id" id="kelas_id" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
                             <option value="">Pilih Kelas</option>
                             @forelse($kelases as $kelas)
-                                <option value="{{$kelas->id}}">{{$kelas->nama}}</option>
+                                <option value="{{$kelas->id}}" data-harga="{{$kelas->kursus->harga}}">{{$kelas->nama}}</option>
                             @empty
                             @endforelse
                         </select>
 
-                        <x-input-error :messages="$errors->get('kelas')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('kelas_id')" class="mt-2" />
                     </div>
                     
                     <div class="mt-4 mb-4">
-                        <x-input-label for="proof" :value="__('proof')" />
+                        <x-input-label for="proof" :value="__('Proof')" />
                         <x-text-input id="proof" class="block mt-1 w-full" type="file" name="proof" required autofocus autocomplete="proof" />
                         <x-input-error :messages="$errors->get('proof')" class="mt-2" />
                     </div>
@@ -51,7 +51,6 @@
                         <x-input-label for="is_paid" :value="__('Status Pembayaran')" />
                         <select name="is_paid" id="is_paid" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
                             <option value="0">Menunggu Verifikasi</option>
-                            {{-- <option value="1">Terverivikasi</option> --}}
                         </select>
                         <x-input-error :messages="$errors->get('is_paid')" class="mt-2" />
                     </div>
@@ -72,13 +71,6 @@
                         <x-input-label for="tanggal_enroll" :value="__('Tanggal Enroll')" />
 
                         <div class="relative max-w-sm">
-                            <!-- Ikon Kalender -->
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
-                            </div> 
-
                             <!-- Input Datepicker -->
                             <x-text-input 
                                 id="tanggal_enroll" 
@@ -97,7 +89,7 @@
 
                     <div>
                         <x-input-label for="transaksi" :value="__('Total Transaksi')" />
-                        <x-text-input id="transaksi" class="block mt-1 w-full" type="number" name="transaksi" :value="old('transaksi')" required autofocus autocomplete="transaksi" />
+                        <x-text-input id="transaksi" class="block mt-1 w-full" type="number" name="transaksi" readonly />
                         <x-input-error :messages="$errors->get('transaksi')" class="mt-2" />
                     </div>
 
@@ -110,4 +102,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const kelasDropdown = document.getElementById('kelas_id');
+            const transaksiField = document.getElementById('transaksi');
+
+            kelasDropdown.addEventListener('change', function () {
+                const selectedOption = kelasDropdown.options[kelasDropdown.selectedIndex];
+                const harga = selectedOption.getAttribute('data-harga');
+
+                if (harga) {
+                    transaksiField.value = harga;
+                } else {
+                    transaksiField.value = '';
+                }
+            });
+        });
+    </script>
 </x-app-layout>
