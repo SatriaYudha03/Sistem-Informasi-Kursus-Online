@@ -6,17 +6,16 @@
             </h2>
         </div>
     </x-slot>
-    
+
+<div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex flex-col gap-y-5 mt-24">
-                
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3">Hari</th>
                         <th scope="col" class="px-6 py-3">Jam mulai</th>
-                        <th scope="col" class="px-6 py-3">Jam selesai</th>
-                        
+                        <th scope="col" class="px-6 py-3">Jam selesai</th>  
                     </tr>
                 </thead>
                 <tbody>
@@ -35,12 +34,11 @@
                             </tr>
                         @endforeach
                     @endforeach
-                </tbody>
-                
+                </tbody>  
             </table>
         </div>
-
     </div>
+</div>
 
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
@@ -51,6 +49,8 @@
                         <div class="flex flex-col">
                             <h3 class="text-indigo-950 text-xl font-bold">{{ $kursus->name }}</h3>
                             <p class="text-slate-500 text-sm">Kategori: {{ $kursus->kategori->name }}</p>
+                            {{-- <p class="text-slate-500 text-sm">Kelas: {{ $enroll->kelas->nama }}</p> --}}
+                            <p class="text-slate-500 text-sm">Ruangan: {{ $enroll->kelas->ruangan }}</p>
                             <p class="text-slate-500 text-sm">Instruktur: {{ $enroll->kelas->instruktur->user->name }}</p>
                         </div>
                     </div>

@@ -238,6 +238,12 @@ class KursusController extends Controller
     
     //   dd($instrukturs);
       // Menampilkan view dengan data
-      return view('peserta.kursuses.show', compact('kursus', 'kategoris', 'jadwals', 'instrukturs'));
+
+       // Mengambil data enroll peserta yang sedang login dengan relasi kelas
+    $enrolls = Enroll::with('kelas')
+    ->where('user_id', Auth::user()->id)
+    ->get();
+
+      return view('peserta.kursuses.show', compact('kursus', 'kategoris', 'jadwals', 'instrukturs', 'enrolls'));
     }
 }
