@@ -194,6 +194,13 @@ class KursusController extends Controller
             ]);
         }
 
+            // Cek apakah file proof diupload
+            if ($request->hasFile('proof')) {
+                // Simpan file ke folder proofs di storage/public
+                $path = $request->file('proof')->store('proofs', 'public');
+                $validated['proof'] = $path; // Simpan path ke dalam array $validated
+                }
+
         DB::transaction(function () use ($user, $validated) {
 
             $validated['user_id'] = $user->id;

@@ -22,7 +22,7 @@
                     <!-- Kategori -->
                     <div class="mb-4">
                         <x-input-label for="kategori" :value="__('Kategori')" />
-                        <select name="kategori_id" id="kategori_id" class="py-3 rounded-lg pl-3 w-full border border-slate-300">
+                        <select name="kategori_id" id="kategori_id" class="py-3 rounded-lg pl-3 w-full border border-slate-300" disabled>
                             <option value="">Pilih Kategori</option>
                             @forelse($kategoris as $kategori)
                                 <option value="{{ $kategori->id }}" {{ $kursus->kategori_id == $kategori->id ? 'selected' : '' }}>
@@ -38,8 +38,9 @@
                     <!-- Nama Kursus -->
                     <div>
                         <x-input-label for="name" :value="__('Nama Kursus')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $kursus->name }}" required autofocus autocomplete="name" />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        {{ $kursus->name }}
+                        {{-- <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $kursus->name }}" required autofocus autocomplete="name" /> --}}
+                        {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
                     </div>
 
                     <!-- Deskripsi -->

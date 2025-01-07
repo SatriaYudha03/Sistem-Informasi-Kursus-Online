@@ -20,7 +20,7 @@
                 <form method="POST" action="{{ route('peserta.kursuses.enroll-kursus') }}" enctype="multipart/form-data">
                     @csrf
 
-                    <div>
+                    <div class="mb-4">
                         <x-input-label for="email" :value="__('Email Peserta')" />
                         <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', Auth::user()->email)" readonly required autofocus autocomplete="email" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -39,9 +39,17 @@
 
                         <x-input-error :messages="$errors->get('kelas')" class="mt-2" />
                     </div>
+
+                    <div class="mb-4">
+                        <x-input-label for="proof" :value="__('Silahkan Transfer Pada Salah Satu Rekening di Bawah ini')" />
+                        <p>BCA: 7124923591</p>
+                        <p>BNI: 2392340532</p>
+                        <p>BRI: 9235823343</p>
+                        <x-input-error :messages="$errors->get('proof')" class="mt-2" />
+                    </div>
                     
-                    <div class="mt-4">
-                        <x-input-label for="proof" :value="__('proof')" />
+                    <div class="mb-4">
+                        <x-input-label for="proof" :value="__('Upload Bukti Pembayaran')" />
                         <x-text-input id="proof" class="block mt-1 w-full" type="file" name="proof" required autofocus autocomplete="proof" />
                         <x-input-error :messages="$errors->get('proof')" class="mt-2" />
                     </div>
@@ -66,7 +74,7 @@
                     </div>
 
                     <!-- Tanggal Enroll -->
-                    <div class="mt-4">
+                    <div class="mb-4">
                         <x-input-label for="tanggal_enroll" :value="__('Tanggal Enroll')" />
 
                         <div class="relative max-w-sm">

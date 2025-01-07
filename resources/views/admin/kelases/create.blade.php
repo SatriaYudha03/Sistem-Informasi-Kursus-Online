@@ -21,7 +21,7 @@
                     @csrf
 
 
-                    <div>
+                    <div class="mb-4">
                         <x-input-label for="nama" :value="__('Nama Kelas')" />
                         <x-text-input id="nama" class="block mt-1 w-full" type="text" name="nama" :value="old('nama')" required autofocus autocomplete="nama" />
                         <x-input-error :messages="$errors->get('nama')" class="mt-2" />

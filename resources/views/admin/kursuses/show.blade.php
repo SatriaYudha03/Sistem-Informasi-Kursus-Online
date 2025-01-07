@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Courses Details') }}
+                {{ __('Detail Kursus') }}
             </h2>
         </div>
     </x-slot>
