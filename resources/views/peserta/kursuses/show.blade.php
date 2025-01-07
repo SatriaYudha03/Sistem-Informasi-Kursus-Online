@@ -7,6 +7,41 @@
         </div>
     </x-slot>
     
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex flex-col gap-y-5 mt-24">
+                
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Hari</th>
+                        <th scope="col" class="px-6 py-3">Jam mulai</th>
+                        <th scope="col" class="px-6 py-3">Jam selesai</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($jadwals as $enroll)
+                        @foreach ($enroll->kelas->jadwal as $jadwal)
+                            <tr class="odd:bg-white even:bg-gray-50 border-b">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    {{ $jadwal->hari }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $jadwal->jam_mulai }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $jadwal->jam_selesai }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endforeach
+                </tbody>
+                
+            </table>
+        </div>
+
+    </div>
+
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
@@ -15,7 +50,8 @@
                         <img src="{{ Storage::url($kursus->thumbnail) }}" alt="" class="rounded-2xl object-cover w-[200px] h-[150px]">
                         <div class="flex flex-col">
                             <h3 class="text-indigo-950 text-xl font-bold">{{ $kursus->name }}</h3>
-                            <p class="text-slate-500 text-sm">{{ $kursus->kategori->name }}</p>
+                            <p class="text-slate-500 text-sm">Kategori: {{ $kursus->kategori->name }}</p>
+                            <p class="text-slate-500 text-sm">Instruktur: {{ $enroll->kelas->instruktur->user->name }}</p>
                         </div>
                     </div>
  
@@ -47,7 +83,7 @@
 
                     
                     <div class="flex flex-row items-center gap-x-3">
-                        <a href="{{ route('admin.materi_kursuses.edit', $materi) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                        {{-- <a href="{{ route('admin.materi_kursuses.edit', $materi) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                             Edit Materi
                         </a>
                         <form action="{{ route('admin.materi_kursuses.destroy', $materi) }}" method="POST">
@@ -60,7 +96,7 @@
                                     </svg>
                                     
                             </button>
-                        </form>
+                        </form> --}}
                     </div>
                     
                 </div>

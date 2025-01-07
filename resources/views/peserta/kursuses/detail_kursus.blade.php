@@ -45,7 +45,7 @@
                     <!-- Deskripsi -->
                     <div class="mt-4">
                         <x-input-label for="deskripsi" :value="__('Deskripsi')" />
-                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full">{{ $kursus->deskripsi }}</textarea>
+                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full" readonly>{{ $kursus->deskripsi }}</textarea>
                         <x-input-error :messages="$errors->get('deskripsi')" class="mt-2" />
                     </div>
 
@@ -99,7 +99,7 @@
 
                     <!-- Submit Button -->
                     <div class="flex items-center justify-end mt-4">
-                        <a href="{{ route('peserta.kursuses.enroll', $kursus) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">Beli Kursus</a>
+                        <a href="{{ route('peserta.kursuses.enroll', $kursus) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">Lanjut</a>
                     </div>
 
             </div>

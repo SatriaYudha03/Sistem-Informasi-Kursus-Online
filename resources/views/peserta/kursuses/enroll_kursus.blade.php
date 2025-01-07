@@ -96,7 +96,7 @@
 
                     <div class="flex items-center justify-end mt-4">
                         <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Tambah Peserta
+                            Beli Kursus
                         </button>
                     </div>
                 </form>

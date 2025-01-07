@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreEnrollRequest;
 use App\Http\Requests\StoreKursusRequest;
 use App\Http\Requests\UpdateKursusRequest;
+use App\Models\Jadwal;
 
 class KursusController extends Controller
 {
@@ -225,7 +226,18 @@ class KursusController extends Controller
       // Mengambil semua kategori (untuk dropdown, jika diperlukan)
       $kategoris = Kategori::all();
 
+      $jadwals = Enroll::with('kelas.jadwal')
+      ->where('user_id', Auth::user()->id)
+      ->get();
+
+    //   dd($jadwals);
+    //   $instrukturs = Instruktur::all();
+
+      // Mengambil instruktur yang mengajar kelas pada kursus ini
+    $instrukturs = Instruktur::whereIn('id', $kursus->kelas->pluck('instruktur_id'))->get();
+    
+    //   dd($instrukturs);
       // Menampilkan view dengan data
-      return view('peserta.kursuses.show', compact('kursus', 'kategoris'));
+      return view('peserta.kursuses.show', compact('kursus', 'kategoris', 'jadwals', 'instrukturs'));
     }
 }
