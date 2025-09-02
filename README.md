@@ -2,7 +2,18 @@
 
 ## Screenshot
 
-![Tampilan Form Pembayaran](database/images/form-pembayaran.png)
+![Enroll](images/enroll.png)
+![Form Pembayaran](images/form-pembayaran.png)
+![Kelola Instruktur](images/kelola-instruktur.png)
+![Kelola Kategori](images/kelola-kategori.png)
+![Kelola Kursus](images/kelola-kursus.png)
+![Kelola Pengguna](images/kelola-pengguna.png)
+![Landing Page 2](images/landing-page-2.png)
+![Landing Page 3](images/landing-page-3.png)
+![Landing Page Why Us](images/landing-page-why-us.png)
+![Landing Page](images/landing-page.png)
+![Materi Kursus](images/materi-kursus.png)
+![Owner Dashboard](images/owner-dashboard.png)
 
 ## Cara Instalasi
 
@@ -46,4 +57,4 @@
 ---
 
 **Catatan:**  
-Pastikan sudah menginstall PHP, Composer, dan database server (MySQL/MariaDB) di komputer
+Pastikan sudah menginstall PHP, Composer, dan database server
