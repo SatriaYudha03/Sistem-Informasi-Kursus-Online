@@ -2,18 +2,21 @@
 
 ## Screenshot
 
-![Enroll](images/enroll.png)
-![Form Pembayaran](images/form-pembayaran.png)
-![Kelola Instruktur](images/kelola-instruktur.png)
-![Kelola Kategori](images/kelola-kategori.png)
-![Kelola Kursus](images/kelola-kursus.png)
-![Kelola Pengguna](images/kelola-pengguna.png)
-![Landing Page 2](images/landing-page-2.png)
-![Landing Page 3](images/landing-page-3.png)
-![Landing Page Why Us](images/landing-page-why-us.png)
-![Landing Page](images/landing-page.png)
-![Materi Kursus](images/materi-kursus.png)
-![Owner Dashboard](images/owner-dashboard.png)
+| Landing Page | Landing Page 2 | Landing Page 3 |
+|--------------|----------------|----------------|
+| ![Landing Page](images/landing-page.png) | ![Landing Page 2](images/landing-page-2.png) | ![Landing Page 3](images/landing-page-3.png) |
+
+| Why Us | Enroll | Form Pembayaran |
+|---------------------|--------|-----------------|
+| ![Why Us](images/landing-page-why-us.png) | ![Enroll](images/enroll.png) | ![Form Pembayaran](images/form-pembayaran.png) |
+
+| Kelola Instruktur | Kelola Kategori | Kelola Kursus |
+|-------------------|-----------------|---------------|
+| ![Kelola Instruktur](images/kelola-instruktur.png) | ![Kelola Kategori](images/kelola-kategori.png) | ![Kelola Kursus](images/kelola-kursus.png) |
+
+| Kelola Pengguna | Materi Kursus | Owner Dashboard |
+|-----------------|---------------|-----------------|
+| ![Kelola Pengguna](images/kelola-pengguna.png) | ![Materi Kursus](images/materi-kursus.png) | ![Owner Dashboard](images/owner-dashboard.png) |
 
 ## Cara Instalasi
 
@@ -57,4 +60,4 @@
 ---
 
 **Catatan:**  
-Pastikan sudah menginstall PHP, Composer, dan database server
+Pastikan sudah menginstall PHP, Composer, dan database
