@@ -22,7 +22,7 @@
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/username/Sistem-Informasi-Kursus-Online.git
+   git clone https://github.com/SatriaYudha03/Sistem-Informasi-Kursus-Online.git
    cd Sistem-Informasi-Kursus-Online
    ```
 
